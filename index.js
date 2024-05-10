@@ -1,26 +1,18 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import Post from './Post.js'; // импорт модели 
+import router from './router.js';
 
 const PORT = 5000
 const pass = 'user'
 const DB_URL = 'mongodb+srv://user:user@cluster0.fid29fo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 const DB_URL_1 = `mongodb+srv://user:user@cluster0.fid29fo.mongodb.net/`
 const app = express()
+
 app.use(express.json())
-
-app.post("/", async (req, res) => {
-    try {
-        const { author, title, content, piscture } = await req.body // заполояем данные для модеои от клиента 
-        const post = await Post.create({ author, title, content, piscture })
-        // res.json(post)
-        res.json(post)
-    } catch (e) {
-        res.status(500).json(e)
-    }
+app.use('/api', router)
 
 
-})
 app.get("/", (req, res) => {
     console.log(req.body)
     res.status(200).json('server working....')
