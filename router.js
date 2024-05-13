@@ -6,9 +6,9 @@ const router = new Router()
 
 // .....создаем маршруты для каждой операции
 router.post('/posts', PostController.create)
-router.get('/posts')
-router.get('/posts/:id')
-router.put('/posts/:id')
-router.delete('/posts/:id')
+router.get('/posts', PostController.getAll)
+router.get('/posts/:id', PostController.getOne)
+router.put('/posts', PostController.update)
+router.delete('/posts/:id', PostController.delete)
 
 export default router
