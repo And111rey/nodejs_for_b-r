@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import Post from './Post.js'; // импорт модели 
 import router from './router.js';
+import fileUpload from 'express-fileupload';
 
 const PORT = 5000
 const pass = 'user'
@@ -10,7 +11,10 @@ const DB_URL_1 = `mongodb+srv://user:user@cluster0.fid29fo.mongodb.net/`
 const app = express()
 
 app.use(express.json())
+app.use(fileUpload({}))
 app.use('/api', router)
+app.use(express.static('static')) // отдаем статические файлы 
+
 
 
 app.get("/", (req, res) => {

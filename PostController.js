@@ -5,8 +5,7 @@ class PostController {
     async create(req, res) {
         try {
             const { author, title, content, piscture } = await req.body // заполояем данные для модеои от клиента 
-
-            const post = await PostService.create({ author, title, content, piscture })
+            const post = await PostService.create({ author, title, content }, req.files.picture)
             res.json(post)
         } catch (e) {
             res.status(500).json(e)
